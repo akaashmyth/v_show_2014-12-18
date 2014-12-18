@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>swipeSlide</title>
     <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui">
+    <script type="text/javascript" src="js/player.js"></script>
 <style>
 *{
     margin: 0;
@@ -46,10 +47,20 @@ html,body{
 </style>
 </head>
 <body>
+<section class="music">
+<!--
+    <span class="text"></span>-->
+    <span id="btn-music" class="btn-music"></span>
+    <audio id="player" loop="loop">
+        <source src="js/Loop567.mp3" type="audio/mpeg">
+    </audio>
+    <!--i id="audioBtn" data-src="pic/Loop567.mp3" class="btn-music on"></i-->
+    <div class="samples hide"><i></i><i></i></div>
+</section>
 <div class="full">
     <ul>
         <li>
-            <span data-src="img/01.jpg"></span>
+            <span data-src="img/01.jpg"><a class="click" href="javascript:;">ffgfgf</a></span>
         </li>
         <li>
             <span data-src="img/02.jpg"></span>
@@ -72,12 +83,54 @@ html,body{
 <script>
 $(function(){
     $('.full').swipeSlide({
-        continuousScroll : true,
+        continuousScroll : false,
         axisX : false,
         autoSwipe : false,
         lazyLoad : true
     });
 });
+</script>
+<audio id="audio" src="js/Loop567.mp3" preload="auto" controls="controls" loop="true" hidden="true">
+    <script type="text/javascript">
+    window.onload = function() {
+        var myAuto =  document.getElementById('audio');
+        myAuto.play();
+        $(".click").click(function (){
+            if(myAuto.paused){
+                myAuto.play()
+            }else{
+                myAuto.pause();
+            }
+        })
+    };
+    </script>
+</audio>
+<script>
+// $(function(){
+//     var music=document.getElementById('player')
+//     /*console.log(music.readyState)
+//     $('#btn-music').hide()
+//     $('.music .samples').hide()
+//     if (music.readyState==4) {
+//         $('#btn-music').show()
+//         $('.music .samples').show()
+//         music.play()
+//     }*/
+//     $('#btn-music').click(function(){
+//         if ($(this).hasClass('off') ) {
+//             $(this).removeClass('off')
+//             music.play()
+//         } else {
+//             $(this).addClass('off')
+//             music.pause()
+//         }
+//     });
+//     $(document).one('touchstart', function(e){
+//         if(e.target.id == 'btn-music') return
+//         music.play()
+//         $('.samples').removeClass('hide')
+//     });
+// });
 </script>
 </body>
 </html>
