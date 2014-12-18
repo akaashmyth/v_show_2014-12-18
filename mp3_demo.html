@@ -1,0 +1,47 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>swipeSlide</title>
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui">
+
+</head>
+<body>
+<section class="music">
+<!--
+    <span class="text"></span>-->
+    <span id="btn-music" class="btn-music"></span>
+    <audio id="player" loop="loop">
+        <source src="%E5%9B%BE%E7%89%87%E6%BC%94%E7%A4%BA_files/Loop567.mp3" type="audio/mpeg">
+    </audio>
+    <!--i id="audioBtn" data-src="pic/Loop567.mp3" class="btn-music on"></i-->
+    <div class="samples hide"><i></i><i></i></div>
+</section>
+<script>
+$(function(){
+    var music=document.getElementById('player')
+    /*console.log(music.readyState)
+    $('#btn-music').hide()
+    $('.music .samples').hide()
+    if (music.readyState==4) {
+        $('#btn-music').show()
+        $('.music .samples').show()
+        music.play()
+    }*/
+    $('#btn-music').click(function(){
+        if ($(this).hasClass('off') ) {
+            $(this).removeClass('off')
+            music.play()
+        } else {
+            $(this).addClass('off')
+            music.pause()
+        }
+    });
+    $(document).one('touchstart', function(e){
+        if(e.target.id == 'btn-music') return
+        music.play()
+        $('.samples').removeClass('hide')
+    });
+});
+</script>
+</body>
+</html>
